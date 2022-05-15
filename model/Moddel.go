@@ -12,7 +12,7 @@ type User struct {
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 	password  string
 	Name      string
-	Avatar    byte
+	Avatar    byte `gorm:"type:MEDIUMBLOB"`
 	Email     *string
 	QQid      int
 	Wechatid  *string
