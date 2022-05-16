@@ -2,8 +2,6 @@ package model
 
 import (
 	"Qpan/db"
-	"errors"
-	"fmt"
 	"gorm.io/gorm"
 	"time"
 )
@@ -23,9 +21,12 @@ type User struct {
 	Filespace string `gorm:"unique"`
 }
 
+//创建用户如果成功返回ture否则返回false
 func (user User) Create() bool {
 	result := db.Condb.Create(&user)
-	fmt.Println(result.Error)
-	errors.Is(result.Error, gorm.ErrDryRunModeUnsupported)
-	return true
+	if result.Error != nil {
+		return true
+	} else {
+		return false
+	}
 }
