@@ -13,7 +13,7 @@ type File struct {
 	UpdatedAt   time.Time
 	DeletedAt   gorm.DeletedAt `gorm:"index"`
 	name        string
-	Md5         string
+	Md5         [16]byte
 	Fileaddress string
 }
 
