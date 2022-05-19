@@ -1,4 +1,6 @@
-package system
+package initservice
+
+//链接数据库
 
 import (
 	"Qpan/config"
