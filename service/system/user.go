@@ -1,4 +1,4 @@
-package services
+package system
 
 import (
 	"Qpan/global"
@@ -9,8 +9,10 @@ import (
 )
 
 //
+type Userservice struct {
+}
 
-func Register(u *model.User) (err error, ok *model.User) {
+func (userservice *Userservice) Register(u *model.User) (err error, ok *model.User) {
 	var user model.User
 	if !errors.Is(global.QP_db.Where("name=?", u.Name).First(&user).Error, gorm.ErrRecordNotFound) {
 		return errors.New("用户名已注册"), ok
