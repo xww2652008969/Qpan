@@ -1,7 +1,7 @@
 package model
 
 import (
-	"Qpan/db"
+	"Qpan/global"
 	"fmt"
 	"gorm.io/gorm"
 	"time"
@@ -24,7 +24,7 @@ type User struct {
 
 // Create 创建用户如果成功返回ture否则返回false
 func (user User) Create() bool {
-	result := db.Condb.Create(&user)
+	result := global.QP_db.Create(&user)
 	if result.Error != nil {
 		return true
 	} else {
@@ -35,8 +35,8 @@ func (user User) Create() bool {
 // Getuser 查询信息如果成功返回ture和User 否则返回空USer和false
 func (user User) Getuser(m map[string]interface{}) (User, bool) {
 	var cuser User
-	db.Condb.Where(m).First(&cuser)
-	if db.Condb.Error == nil {
+	global.QP_db.Where(m).First(&cuser)
+	if global.QP_db.Error == nil {
 		return cuser, true
 	} else {
 		return cuser, false
@@ -45,9 +45,9 @@ func (user User) Getuser(m map[string]interface{}) (User, bool) {
 
 // Updateuser 修改user表 如果成功则返回ture和影响行数,否则返回false，和影响行数
 func (user User) Updateuser(m map[string]interface{}, o map[string]string) (bool, int64) {
-	ref := db.Condb.Model(&user).Where(m).Update(o["key"], o["value"])
+	ref := global.QP_db.Model(&user).Where(m).Update(o["key"], o["value"])
 	fmt.Println(ref.RowsAffected)
-	if db.Condb.Error == nil {
+	if global.QP_db.Error == nil {
 		return true, ref.RowsAffected
 	} else {
 		return false, ref.RowsAffected
