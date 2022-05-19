@@ -14,5 +14,8 @@ func Register(c gin.Context) {
 	user := &model.User{Name: r.Name, Password: r.Passwd}
 	err, userreun := services.Register(user)
 	fmt.Print(err, userreun)
-	//需要完成出参表
+	//需要完成出参表(不是怎么详细)
+	if err != nil {
+		model.FailWithMessage(r, "完成", &c)
+	}
 }
