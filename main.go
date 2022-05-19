@@ -1,13 +1,13 @@
 package main
 
 import (
-	"Qpan/controllers"
+	"Qpan/utils"
 	"fmt"
 )
 
 func main() {
 	str := string("振德好屑")
-	controllers.Writefile("xww", []byte(str))
-	fmt.Printf("%x", controllers.Gedmd5([]byte(str)))
+	utils.Writefile("xww", []byte(str))
+	fmt.Printf("%x", utils.Gedmd5([]byte(str)))
 
 }
