@@ -34,6 +34,7 @@ func (v *Verifyapi) Login(c *gin.Context) {
 	fmt.Print(err, passwderror)
 	if err == nil {
 		model.FailWithMessage(r, "登录成功", c)
+	} else {
+		model.FailWithMessage(r, "登录成功", c)
 	}
-	model.FailWithMessage(r, "密码错误", c)
 }
