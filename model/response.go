@@ -12,8 +12,8 @@ type Response struct {
 }
 
 const (
-	ERROR   = 7
-	SUCCESS = 0
+	ERROR   = 500
+	SUCCESS = 200
 )
 
 func Result(code int, data interface{}, msg string, c *gin.Context) {
@@ -24,10 +24,7 @@ func Result(code int, data interface{}, msg string, c *gin.Context) {
 	})
 }
 
+// FailWithMessage 传入空接口，信息
 func FailWithMessage(data interface{}, message string, c *gin.Context) {
-	Result(ERROR, map[string]interface{}{}, message, c)
-}
-
-func FailWithDetailed(data interface{}, message string, c *gin.Context) {
 	Result(ERROR, data, message, c)
 }
