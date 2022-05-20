@@ -1,10 +1,7 @@
 package main
 
-import (
-	"Qpan/db"
-	"Qpan/model"
-)
+import "Qpan/initservice"
 
 func main() {
-	db.Condb.AutoMigrate(&model.User{})
+	initservice.Init()
 }
