@@ -13,5 +13,6 @@ func (u *Userrouter) Inituserrouter(Router *gin.RouterGroup) {
 	user := Router.Group("/user")
 	{
 		user.POST("/register", Api.Register)
+		user.POST("/login", Api.Login)
 	}
 }
