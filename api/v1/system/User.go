@@ -2,6 +2,7 @@ package system
 
 import (
 	"Qpan/model"
+	"Qpan/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
@@ -20,9 +21,9 @@ func (v *Verifyapi) Register(c *gin.Context) {
 	fmt.Print(err, userreun)
 	//需要完成出参表(不是怎么详细)
 	if err != nil {
-		model.FailWithMessage(userreun, "完成", c)
-	} else {
 		model.FailWithMessage(userreun, "失败", c)
+	} else {
+		model.FailWithMessage(userreun, "成功", c)
 	}
 }
 
@@ -35,8 +36,10 @@ func (v *Verifyapi) Login(c *gin.Context) {
 	err, passwderror := userService.Login(user)
 	fmt.Print(err, passwderror)
 	if err == nil {
-		model.FailWithMessage(r, "登录成功", c)
+		t, _ := utils.Createtoken(r.Name)
+		tok := model.Usertoken{Token: t}
+		model.FailWithMessage(tok, "登录成功", c)
 	} else {
-		model.FailWithMessage(r, "登录登录失败", c)
+		model.FailWithMessage(r, "登录错误", c)
 	}
 }

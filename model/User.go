@@ -21,6 +21,9 @@ type User struct {
 	Active    bool
 	Filespace string
 }
+type Usertoken struct {
+	Token string
+}
 
 // Create 创建用户如果成功返回ture否则返回false
 func (user User) Create() bool {
