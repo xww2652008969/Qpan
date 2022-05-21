@@ -3,10 +3,11 @@ package utils
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 )
 
-//写入文件，返回ture
+// Writefile 写入文件，返回ture
 func Writefile(filename string, chadate []byte) bool {
 	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
 	defer f.Close()
@@ -19,7 +20,7 @@ func Writefile(filename string, chadate []byte) bool {
 	}
 }
 
-//读取文件返回true和数据
+// Readfile 读取文件返回true和数据
 func Readfile(filename string, b []byte) (bool, []byte) {
 	f, err := os.OpenFile(filename, os.O_RDONLY, 777)
 	defer f.Close()
@@ -29,4 +30,13 @@ func Readfile(filename string, b []byte) (bool, []byte) {
 		return false, content
 	}
 	return true, content
+}
+func Createfolder(dirname string) bool {
+	err := os.MkdirAll(dirname, 777)
+	if err != nil {
+		return true
+	} else {
+		log.Print(err)
+		return false
+	}
 }

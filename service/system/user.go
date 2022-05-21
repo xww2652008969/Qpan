@@ -37,3 +37,5 @@ func (Userservice *Userservice) Login(u *model.User) (err error, ok *model.User)
 	//返回空值
 	return nil, u
 }
+
+//

@@ -7,6 +7,7 @@ import (
 
 func Init() {
 	//注册数据库并且自动迁移数据库
+	Initializationwork()
 	DB()
 	global.QP_db.AutoMigrate(model.User{})
 	global.QP_db.AutoMigrate(model.File{})
