@@ -10,6 +10,7 @@ type File struct {
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   gorm.DeletedAt `gorm:"index"`
+	Userid      uint
 	name        string
 	Md5         [16]byte
 	Fileaddress string

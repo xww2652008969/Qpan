@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"mime/multipart"
 	"os"
 )
 
@@ -31,6 +32,8 @@ func Readfile(filename string, b []byte) (bool, []byte) {
 	}
 	return true, content
 }
+
+// Createfolder 传入文件夹路径 创建文件夹 返回bool
 func Createfolder(dirname string) bool {
 	err := os.MkdirAll(dirname, 777)
 	if err != nil {
@@ -39,4 +42,21 @@ func Createfolder(dirname string) bool {
 		log.Print(err)
 		return false
 	}
+}
+
+// Getfile 处理上传文件流
+func Getfile(file *multipart.FileHeader) ([]byte, string, bool) {
+	out, err := file.Open()
+	outname := file.Filename
+	if err == nil {
+		outdate, err := ioutil.ReadAll(out)
+		if err == nil {
+			return outdate, outname, true
+		} else {
+			return nil, outname, false
+		}
+	} else {
+		return nil, outname, false
+	}
+
 }
