@@ -3,12 +3,14 @@ package model
 import (
 	"Qpan/global"
 	"fmt"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 	"time"
 )
 
 type User struct {
 	ID        uint `gorm:"primaryKey"`
+	Uuid      uuid.UUID
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`

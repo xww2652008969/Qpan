@@ -41,6 +41,7 @@ func Createfolder(dirname string) bool {
 	} else {
 		log.Print(err)
 		return false
+
 	}
 }
 

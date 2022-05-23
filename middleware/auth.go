@@ -10,9 +10,9 @@ import (
 func Jwtauth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := c.GetHeader("token")
-		name, err := utils.Parsetoken(t)
+		uuid, err := utils.Parsetoken(t)
 		if err == nil {
-			c.Request.Header.Add("name", name)
+			c.Request.Header.Add("name", fmt.Sprintf("%x", uuid))
 			c.Next()
 		} else {
 			fmt.Println("失效")

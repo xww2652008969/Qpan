@@ -34,9 +34,8 @@ func (v *Verifyapi) Login(c *gin.Context) {
 	_ = c.ShouldBindJSON(&r)
 	user := &model.User{Name: r.Name, Password: r.Passwd}
 	err, passwderror := userService.Login(user)
-	fmt.Print(err, passwderror)
 	if err == nil {
-		t, _ := utils.Createtoken(r.Name)
+		t, _ := utils.Createtoken(passwderror.Uuid)
 		tok := model.Usertoken{Token: t}
 		model.FailWithMessage(tok, "登录成功", c)
 	} else {
