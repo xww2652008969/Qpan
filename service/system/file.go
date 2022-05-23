@@ -14,7 +14,7 @@ type Fileservice struct {
 
 func (Fileservice Fileservice) Pploadfiles(f model.File, filedate []byte) bool {
 	var file = model.File{}
-	err := global.QP_db.Where("md5=?", f.Md5).First(&file).Error
+	err := global.QP_db.Where("md5= ? and useruuid=?", f.Md5, f.Useruuid).First(&file).Error
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		return false
 	} else {
