@@ -10,7 +10,8 @@ func Routers() *gin.Engine {
 	systemRouter := routert.RouterGroupApp.System
 	PrivateGroup := Router.Group("")
 	{
-		systemRouter.Inituserrouter(PrivateGroup) // 注册功能api路由
+		systemRouter.Inituserrouter(PrivateGroup)
+		systemRouter.InitFilerouter(PrivateGroup)
 	}
 	return Router
 }

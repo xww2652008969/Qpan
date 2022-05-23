@@ -12,7 +12,7 @@ type File struct {
 	DeletedAt   gorm.DeletedAt `gorm:"index"`
 	Userid      uint
 	name        string
-	Md5         [16]byte
+	Md5         string
 	Fileaddress string
 }
 

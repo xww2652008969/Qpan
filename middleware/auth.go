@@ -12,7 +12,7 @@ func Jwtauth() gin.HandlerFunc {
 		t := c.GetHeader("token")
 		uuid, err := utils.Parsetoken(t)
 		if err == nil {
-			c.Request.Header.Add("name", fmt.Sprintf("%x", uuid))
+			c.Request.Header.Add("name", fmt.Sprintf("%v", uuid))
 			c.Next()
 		} else {
 			fmt.Println("失效")
