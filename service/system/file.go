@@ -23,3 +23,11 @@ func (Fileservice Fileservice) Pploadfiles(f model.File, filedate []byte) bool {
 		return true
 	}
 }
+func (Fileservice Fileservice) Getfilelist(uuid string) ([]model.File, error) {
+	var fout []model.File
+	err := global.QP_db.Select("fileaddress").Where("useruuid=?", uuid).Find(&fout).Error
+	if err == nil {
+		return fout, nil
+	}
+	return fout, errors.New("查找失败")
+}

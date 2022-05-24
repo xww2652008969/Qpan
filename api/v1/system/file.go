@@ -26,9 +26,18 @@ func (fileapi *Fileapi) Upload(c *gin.Context) {
 	} else {
 	}
 }
+func (fileapi *Fileapi) Getfilelist(c *gin.Context) {
+	uuid := c.Request.Header.Get("uuid")
+	out, err := fileservice.Getfilelist(uuid)
+	if err == nil {
+		model.FailWithMessage(out, "ok", c)
+	} else {
+		model.FailWithMessage(nil, "no", c)
+	}
+}
 
 // Getfile 下载文件
-func (Fileapi Fileapi) Getfile(c *gin.Context) {
+func (fileapi *Fileapi) Getfile(c *gin.Context) {
 	var f model.FileR
 	_ = c.ShouldBindJSON(&f)
 	c.File(f.Fileaddress)

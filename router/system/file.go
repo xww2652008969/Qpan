@@ -15,5 +15,6 @@ func (u *Filerouter) InitFilerouter(Router *gin.RouterGroup) {
 	{
 		user.POST("/upload", Api.Upload)
 		user.GET("/getfile", Api.Getfile)
+		user.GET("/list", Api.Getfilelist)
 	}
 }
