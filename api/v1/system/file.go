@@ -26,3 +26,11 @@ func (fileapi *Fileapi) Upload(c *gin.Context) {
 	} else {
 	}
 }
+
+// Getfile 下载文件
+func (Fileapi Fileapi) Getfile(c *gin.Context) {
+	var f model.FileR
+	_ = c.ShouldBindJSON(&f)
+	c.File(f.Fileaddress)
+	return
+}

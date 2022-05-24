@@ -14,5 +14,6 @@ func (u *Filerouter) InitFilerouter(Router *gin.RouterGroup) {
 	user := Router.Group("/file").Use(middleware.Jwtauth())
 	{
 		user.POST("/upload", Api.Upload)
+		user.GET("/getfile", Api.Getfile)
 	}
 }

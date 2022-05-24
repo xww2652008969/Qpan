@@ -1,6 +1,6 @@
 package model
 
-type User_r struct {
+type UserR struct {
 	Name   string `json:"name"`
 	Passwd string `json:"passwd"`
 }

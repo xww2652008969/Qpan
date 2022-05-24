@@ -13,7 +13,7 @@ type Verifyapi struct {
 }
 
 func (v *Verifyapi) Register(c *gin.Context) {
-	var r model.User_r
+	var r model.UserR
 	_ = c.ShouldBindJSON(&r)
 	//需要检验传入参数
 	user := &model.User{Name: r.Name, Password: r.Passwd}
@@ -30,7 +30,7 @@ func (v *Verifyapi) Register(c *gin.Context) {
 //用户登录
 
 func (v *Verifyapi) Login(c *gin.Context) {
-	var r model.User_r
+	var r model.UserR
 	_ = c.ShouldBindJSON(&r)
 	user := &model.User{Name: r.Name, Password: r.Passwd}
 	err, passwderror := userService.Login(user)
