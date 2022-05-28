@@ -24,7 +24,12 @@ func Result(code int, data interface{}, msg string, c *gin.Context) {
 	})
 }
 
-// FailWithMessage 传入空接口，信息
-func FailWithMessage(data interface{}, message string, c *gin.Context) {
+// Successres 传入空接口，信息
+func Successres(data interface{}, message string, c *gin.Context) {
+	Result(SUCCESS, data, message, c)
+}
+
+//
+func Errorres(data interface{}, message string, c *gin.Context) {
 	Result(ERROR, data, message, c)
 }

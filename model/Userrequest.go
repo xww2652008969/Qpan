@@ -4,23 +4,16 @@ import (
 	"Qpan/global"
 	"fmt"
 	"github.com/google/uuid"
-	"gorm.io/gorm"
-	"time"
 )
 
 type User struct {
 	ID        uint `gorm:"primaryKey"`
 	Uuid      uuid.UUID
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt gorm.DeletedAt `gorm:"index"`
 	Password  string
 	Name      string
-	Avatar    byte `gorm:"type:MEDIUMBLOB"`
 	Email     *string
 	QQid      int
 	Wechatid  *string
-	Active    bool
 	Filespace string
 }
 type Usertoken struct {

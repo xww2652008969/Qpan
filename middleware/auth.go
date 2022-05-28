@@ -17,7 +17,7 @@ func Jwtauth() gin.HandlerFunc {
 		} else {
 			fmt.Println("失效")
 			c.Abort()
-			model.FailWithMessage(c.Request.Header, "验证失败", c)
+			model.Errorres(nil, "验证失败", c)
 		}
 	}
 }

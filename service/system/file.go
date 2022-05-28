@@ -5,6 +5,7 @@ import (
 	"Qpan/model"
 	"Qpan/utils"
 	"errors"
+	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
@@ -23,11 +24,25 @@ func (Fileservice Fileservice) Pploadfiles(f model.File, filedate []byte) bool {
 		return true
 	}
 }
-func (Fileservice Fileservice) Getfilelist(uuid string) ([]model.File, error) {
+func (Fileservice Fileservice) Getfilelist(uuid string) ([]model.Getfile, error) {
+	var a model.Getfile
+	var out []model.Getfile
 	var fout []model.File
-	err := global.QP_db.Select("fileaddress").Where("useruuid=?", uuid).Find(&fout).Error
-	if err == nil {
-		return fout, nil
+	err := global.QP_db.Select("name").Where("useruuid=?", uuid).Find(&fout).Error
+	for _, value := range fout {
+		t := value.Name
+		a.Name = t
+		out = append(out, a)
+
 	}
-	return fout, errors.New("查找失败")
+	if err == nil {
+		return out, nil
+	}
+	return out, errors.New("查找失败")
+}
+
+// Getfile 下载文件
+func (Fileservice Fileservice) Getfile(filedir string, c *gin.Context) {
+	c.File(filedir)
+
 }

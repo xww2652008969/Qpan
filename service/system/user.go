@@ -13,10 +13,10 @@ import (
 type Userservice struct {
 }
 
-//注册函数
+// Register 用户注册
 func (userservice *Userservice) Register(u *model.User) (err error, ok *model.User) {
 	var user model.User
-	if global.QP_db.Where("name=?", u.Name).Find(&user).Error != nil {
+	if global.QP_db.Where("name=?", u.Name).First(&user).Error != nil {
 		return errors.New("用户名已注册"), ok
 	} else {
 		u.Uuid = uuid.Must(uuid.NewRandom())
@@ -28,7 +28,7 @@ func (userservice *Userservice) Register(u *model.User) (err error, ok *model.Us
 	}
 }
 
-//用户登录
+// Login 用户登录
 func (Userservice *Userservice) Login(u *model.User) (error, model.User) {
 	var user model.User
 	u.Password = utils.Gedmd5([]byte(u.Password))
