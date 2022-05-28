@@ -51,3 +51,11 @@ func (user User) Updateuser(m map[string]interface{}, o map[string]string) (bool
 		return false, ref.RowsAffected
 	}
 }
+
+////Deleteuser 删除user表，如果成功啧返回true和影响行数，否则返回false，同时无变化
+///**
+//未测试
+//*/
+//func (user User) Deleteuser(m map[string]interface{}, o map[string]string) (bool, int64) {
+//
+//}
