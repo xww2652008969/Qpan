@@ -10,7 +10,5 @@ type User struct {
 	Password  string
 	Name      string
 	Email     *string
-	QQid      int
-	Wechatid  *string
 	Filespace string
 }

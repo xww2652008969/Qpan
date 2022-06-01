@@ -5,3 +5,7 @@ type Updateuser struct {
 	Oldpassword string
 	Newpassword string
 }
+type UserR struct {
+	Name   string `json:"name"`
+	Passwd string `json:"passwd"`
+}
