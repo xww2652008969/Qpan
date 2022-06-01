@@ -10,6 +10,7 @@ func main() {
 	//a, b := utils.Parsetoken(token)
 	//fmt.Println(a, b)
 	//initservice.DB()
+	//initservice.Initredis()
 	//global.QP_db.Select("useruuid", "md5", "ID").Where("useruuid =?", w).Find(&f)
 	//fmt.Println(f)
 }

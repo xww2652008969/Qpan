@@ -16,7 +16,7 @@ type Userservice struct {
 // Register 用户注册
 func (userservice *Userservice) Register(u *model.User) (err error, ok *model.User) {
 	var user model.User
-	if global.QP_db.Where("name=?", u.Name).First(&user).Error != nil {
+	if global.QP_db.Where("name=?", u.Name).First(&user).Error == nil {
 		return errors.New("用户名已注册"), ok
 	} else {
 		u.Uuid = uuid.Must(uuid.NewRandom())
@@ -42,3 +42,14 @@ func (Userservice *Userservice) Login(u *model.User) (error, model.User) {
 }
 
 //
+func (userservice *Userservice) Updateuser(u model.Updateuser) error {
+	var user model.User
+	u.Oldpassword = utils.Gedmd5([]byte(u.Oldpassword))
+	u.Newpassword = utils.Gedmd5([]byte(u.Newpassword))
+	out := global.QP_db.Model(&user).Where("uuid=? and password=?", u.Uuid, u.Oldpassword).Update("password", u.Newpassword)
+	if out.RowsAffected == 1 {
+		return nil
+	} else {
+		return errors.New("更改密码失败")
+	}
+}

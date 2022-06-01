@@ -13,11 +13,28 @@ func Jwtauth() gin.HandlerFunc {
 		uuid, err := utils.Parsetoken(t)
 		if err == nil {
 			c.Request.Header.Add("uuid", fmt.Sprintf("%v", uuid))
-			c.Next()
+			out, err := utils.Getredis(fmt.Sprintf("%v", uuid), "jwt")
+			fmt.Println(out, err, uuid)
+			{
+				if err != nil {
+					c.Abort()
+					fmt.Print(out)
+					model.Errorres(nil, "token错误", c)
+				} else {
+					if out == t {
+						c.Next()
+					} else {
+						fmt.Print(out)
+						c.Abort()
+						model.Errorres(nil, "token错误", c)
+					}
+				}
+			}
 		} else {
+			fmt.Println(err)
 			fmt.Println("失效")
 			c.Abort()
-			model.Errorres(nil, "验证失败", c)
+			model.Errorres(nil, "token错误", c)
 		}
 	}
 }
