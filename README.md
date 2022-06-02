@@ -11,3 +11,13 @@
 `GORM`
 
 ## 安装
+
+`git clone https://github.com/xww2652008969/Qpan.git`
+
+`go build`
+
+## 需求
+
+`mysql`
+
+`redis`
