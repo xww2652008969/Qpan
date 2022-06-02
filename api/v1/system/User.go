@@ -7,8 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//用户注册
-
 type Userapi struct {
 }
 
