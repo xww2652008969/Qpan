@@ -10,6 +10,7 @@ func Init() {
 	Initializationwork()
 	Initredis()
 	DB()
+	InitLog()
 	global.QP_db.AutoMigrate(model.User{})
 	global.QP_db.AutoMigrate(model.File{})
 	rou := Routers()

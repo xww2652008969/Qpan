@@ -14,7 +14,6 @@ func Jwtauth() gin.HandlerFunc {
 		if err == nil {
 			c.Request.Header.Add("uuid", fmt.Sprintf("%v", uuid))
 			out, err := utils.Getredis(fmt.Sprintf("%v", uuid), "jwt")
-			fmt.Println(out, err, uuid)
 			{
 				if err != nil {
 					c.Abort()
@@ -31,8 +30,6 @@ func Jwtauth() gin.HandlerFunc {
 				}
 			}
 		} else {
-			fmt.Println(err)
-			fmt.Println("失效")
 			c.Abort()
 			model.Errorres(nil, "token错误", c)
 		}
